@@ -1,0 +1,6 @@
+<% object.errors.full_messages.each do |msg| %>
+  <div class="alert alert-danger alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <p><%= msg %></p>
+  </div>
+<% end %>

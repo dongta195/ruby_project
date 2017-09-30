@@ -1,0 +1,14 @@
+//= require jquery
+//= require jquery_ujs
+//= require bootstrap-sprockets
+//= require ./admin-theme/js.cookie.min
+//= require ./admin-theme/jquery.slimscroll.min
+//= require ./admin-theme/jquery.blockui.min
+//= require ./admin-theme/bootstrap-switch.min
+//= require ./admin-theme/morris.min
+//= require ./admin-theme/app.min
+//= require ./admin-theme/layout.min
+//= require ./admin-theme/quick-sidebar.min
+//= require ./admin-theme/quick-nav.min
+//= require ./lib/jquery.uploadPreview.min
+//= require ./admin/create-brand

@@ -1,0 +1,210 @@
+<div id="create-brand-account-page">
+  <div class="page-bar">
+    <ul class="page-breadcrumb">
+      <li>
+        <%= link_to t("create_brand.home"), admin_root_path %>
+        <i class="fa fa-circle"></i>
+      </li>
+      <li>
+        <span><%= t "create_brand.page_title" %></span>
+      </li>
+    </ul>
+  </div>
+  <strong><h1 class="page-title"> <%= t "create_brand.page_title" %>
+    <small></small>
+  </h1></strong>
+  <%= form_for @brand, url: admin_brands_path, html: {class: "form-horizontal"} do |f| %>
+    <%= render "shared/errors", object: f.object %>
+    <div class="form-group">
+      <label for="username" class="col-sm-2 col-sm-offset-1 control-label"><%= t "create_brand.username" %></label>
+      <div class="col-sm-6">
+        <%= f.text_field :username, autocomplete: "off", id: "username", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password" class="col-sm-2 col-sm-offset-1 control-label"><%= t "create_brand.password" %></label>
+      <div class="col-sm-6">
+        <%= f.password_field :password, autocomplete: "off", id: "password", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password_confirmation" class="col-sm-2 col-sm-offset-1 control-label">
+        <%= t "create_brand.repassword" %>
+      </label>
+      <div class="col-sm-6">
+        <%= f.password_field :password_confirmation, autocomplete: "off", id: "password_confirmation",
+          class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="name" class="col-sm-2 col-sm-offset-1 control-label"><%= t "create_brand.name" %></label>
+      <div class="col-sm-6">
+        <%= f.text_field :name, autocomplete: "off", id: "name", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description" class="col-sm-2 col-sm-offset-1 control-label"><%= t "create_brand.desc" %></label>
+      <div class="col-sm-6">
+        <%= f.text_area :description, class: "form-control", class: "form-control", id: "description" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="company-name" class="col-sm-2 col-sm-offset-1 control-label">
+        <%= t "create_brand.company_name" %>
+      </label>
+      <div class="col-sm-6">
+        <%= f.text_field :company_name, class: "form-control", id: "company-name" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email" class="col-sm-2 col-sm-offset-1 control-label">
+        <%= t "create_brand.email" %>
+      </label>
+      <div class="col-sm-6">
+        <%= f.text_field :email, class: "form-control", id: "email" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="company-url" class="col-sm-2 col-sm-offset-1 control-label">
+        <%= t "create_brand.company_url" %>
+      </label>
+      <div class="col-sm-6">
+        <%= f.text_field :company_url, class: "form-control", id: "company-url" %>
+      </div>
+    </div>
+
+    <%= f.fields_for :user_addresses do |ff|  %>
+      <div class="form-group company-name">
+        <label class="col-sm-2 col-sm-offset-1 control-label">
+          <%= t "create_brand.manager_name" %>
+        </label>
+        <label class="col-sm-1 control-label" for="firstname"><%= t "create_brand.first_name" %></label>
+        <div class="col-sm-2 firstname">
+          <%= ff.text_field :firstname, class: "form-control", id: "firstname" %>
+        </div>
+        <label for="lastname" class="col-sm-1 control-label"><%= t "create_brand.last_name" %></label>
+        <div class="col-sm-2 lastname">
+          <%= ff.text_field :lastname, class: "form-control", id: "lastname" %>
+        </div>
+      </div>
+
+      <div class="form-group company-name">
+        <label class="col-sm-2 col-sm-offset-1 control-label">
+          <%= t "create_brand.manager_name_kana" %>
+        </label>
+        <label class="col-sm-1 control-label" for="firstname_kana"><%= t "create_brand.first_name_kana" %></label>
+        <div class="col-sm-2 firstname">
+          <%= ff.text_field :firstname_kana, class: "form-control", id: "firstname_kana" %>
+        </div>
+        <label for="lastname_kana" class="col-sm-1 control-label"><%= t "create_brand.last_name_kana" %></label>
+        <div class="col-sm-2 lastname">
+          <%= ff.text_field :lastname_kana, class: "form-control", id: "lastname_kana" %>
+        </div>
+      </div>
+
+      <div class="form-group addresses">
+        <label for="zipcode" class="col-sm-2 col-sm-offset-1 control-label"><%= t "create_brand.zipcode" %></label>
+        <div class="col-sm-2">
+          <%= ff.text_field :zipcode, class: "form-control", id: "zipcode" %>
+        </div>
+        <div class="col-sm-1">
+          <button type="button" class="btn btn-info" id="search-address"><%= t "create_brand.auto_fill" %></button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="prefecture" class="col-sm-2 col-sm-offset-1 control-label"><%= t "create_brand.prefecture" %></label>
+        <div class="col-sm-6">
+          <%= text_field_tag :prefecture, nil, class: "form-control", id: "prefecture" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="city" class="col-sm-2 col-sm-offset-1 control-label"><%= t "create_brand.city" %></label>
+        <div class="col-sm-2">
+          <%= text_field_tag :city, nil, class: "form-control", id: "city" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="town" class="col-sm-2 col-sm-offset-1 control-label"><%= t "create_brand.town" %></label>
+        <div class="col-sm-6">
+          <%= text_field_tag :town, nil, class: "form-control", id: "town" %>
+        </div>
+      </div>
+
+      <div class="form-group telephone">
+        <label for="telephone" class="col-sm-2 col-sm-offset-1 control-label"><%= t "create_brand.town" %></label>
+        <div class="col-sm-6">
+          <%= ff.text_field :telephone, class: "form-control", id: "telephone" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="form-group" id="company-logo">
+      <label class="col-sm-2 col-sm-offset-1 control-label"><%= t "create_brand.logo" %></label>
+      <div class="col-sm-6" id="image-preview">
+        <a class="edit-img"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        <%= f.file_field :company_logo %>
+      </div>
+    </div>
+
+    <div id="company-images">
+      <div class="form-group">
+        <label class="col-sm-2 col-sm-offset-1 control-label"><%= t "create_brand.company_photo" %></label>
+        <div class="col-sm-5" id="file-fields">
+          <div class="image-form image-preview" data-order="0"
+            id="upload-company-img0">
+            <a href="javascript:void(0)" class="remove-img"><i class="fa fa-trash" aria-hidden="true"></i></a>
+            <a href="javascript:void(0)" class="edit-img"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+            <input type="file" name="user[company_images_attributes][0][product_image]" id="user_company_images_0">
+            <input type="hidden" value="company_image" name="user[company_images_attributes][0][image_type]">
+            <input type="hidden" value="1" name="user[company_images_attributes][0][position]">
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="col-sm-1">
+          <button type="button" class="btn btn-info" id="add-company-img">
+            + <%= t "create_brand.add" %>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="product-images">
+      <div class="form-group">
+        <label class="col-sm-2 col-sm-offset-1 control-label"><%= t "create_brand.product_photo" %></label>
+        <div class="col-sm-5">
+          <div class="image-form image-preview" data-order="20" id="upload-product-img20">
+          <a href="javascript:void(0)" class="remove-img"><i class="fa fa-trash" aria-hidden="true"></i></a>
+          <a class="edit-img" href="javascript:void(0)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+            <input type="file" name="user[company_images_attributes][20][product_image]" id="user_company_images_20">
+            <input type="hidden" value="product_image" name="user[company_images_attributes][20][image_type]">
+            <input type="hidden" value="1" name="user[company_images_attributes][20][position]">
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="col-sm-1">
+          <button type="button" class="btn btn-info" id="add-product-img">
+            + <%= t "create_brand.add" %>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <%= f.hidden_field :role_id %>
+
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-10">
+        <button type="submit" class="btn btn-info btn-lg"><%= t "create_brand.create" %></button>
+      </div>
+    </div>
+  <% end %>
+</div>

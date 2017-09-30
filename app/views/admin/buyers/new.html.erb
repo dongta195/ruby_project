@@ -1,0 +1,168 @@
+<div class="theme-panel hidden-xs hidden-sm">
+  <div class="toggler-close"></div>
+</div>
+
+<div class="page-bar">
+  <ul class="page-breadcrumb">
+    <li>
+      <%= link_to t("create_buyer.home"), admin_root_path %>
+      <i class="fa fa-circle"></i>
+    </li>
+
+    <li>
+      <%= link_to t("create_buyer.buyer"), admin_buyers_path %>
+      <i class="fa fa-circle"></i>
+    </li>
+
+    <li>
+      <span><%= t "create_buyer.create_buyer" %></span>
+    </li>
+  </ul>
+</div>
+
+<h1 class="page-title"> <%= t "create_buyer.buyer" %>
+  <small><%= t "create_buyer.input_all_to_create_buyer" %></small>
+</h1>
+
+<div class="row">
+  <div class="col-md-12 ">
+    <!-- BEGIN SAMPLE FORM PORTLET-->
+    <div class="portlet light bordered">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="icon-settings font-dark"></i>
+          <span class="caption-subject font-dark sbold uppercase"><%= t "create_buyer.create_buyer" %></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+
+          <%= render "blocks/error_messages", object: @buyer %>
+
+          <div class="portlet-body form">
+            <%= form_for @buyer, url: {action: "create"}, html: {class: "form-horizontal"} do |f| %>
+
+                <div class="form-body">
+
+                  <div class="form-group <% if @buyer.errors.details.keys.include? :username %> has-error <% end %>">
+                    <label class="col-md-3 control-label"><%= t "create_buyer.username" %></label>
+                    <div class="col-md-6">
+                      <div class="input-group">
+                        <%= f.text_field :username, class: "form-control", required: true %>
+                        <span class="input-group-addon">
+                          <i class="fa fa-user"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group <% if @buyer.errors.details.keys.include? :password %> has-error <% end %>">
+                    <label class="col-md-3 control-label"><%= t "create_buyer.password" %></label>
+                    <div class="col-md-6">
+                      <div class="input-group">
+                        <%= f.password_field :password, class: "form-control", required: true %>
+                        <span class="input-group-addon">
+                          <i class="fa fa-user"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group <% if @buyer.errors.details.keys.include? :password_confirmation %> has-error <% end %>">
+                    <label class="col-md-3 control-label"><%= t "create_buyer.repassword" %></label>
+                    <div class="col-md-6">
+                      <div class="input-group">
+                        <%= f.password_field :password_confirmation, class: "form-control", required: true %>
+                        <span class="input-group-addon">
+                          <i class="fa fa-user"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group <% if @buyer.errors.details.keys.include? :email %> has-error <% end %>">
+                    <label class="col-md-3 control-label"><%= t "create_buyer.email" %></label>
+                    <div class="col-md-6">
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-envelope"></i>
+                        </span>
+                        <%= f.email_field :email, class: "form-control"  %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-md-3 control-label"><%= t "create_buyer.name" %></label>
+                    <div class="col-md-6">
+                      <%= f.text_field :name, class: "form-control" %>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-md-3 control-label"><%= t "create_buyer.company_name" %></label>
+                    <div class="col-md-6">
+                      <%= f.text_field :company_name, class: "form-control" %>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-md-3 control-label"><%= t "create_buyer.store" %></label>
+                    <div class="col-md-6">
+                      <%= f.text_field :stories, class: "form-control" %>
+                    </div>
+                  </div>
+
+                  <%= f.fields_for :user_addresses do |ff|  %>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label"><%= t "create_buyer.zipcode" %></label>
+                      <div class="col-md-3">
+                        <div class="input-group">
+                          <%= ff.text_field :zipcode, class: "form-control" %>
+                          <span class="input-group-btn">
+                      <button class="btn blue" type="button"><%= t "create_buyer.auto_fill" %></button>
+                    </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-md-3 control-label"><%= t "create_buyer.address" %></label>
+                      <div class="col-md-6">
+                        <%= ff.text_field :address, class: "form-control" %>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-md-3 control-label"><%= t "create_buyer.building" %></label>
+                      <div class="col-md-6">
+                        <%= ff.text_field :building_name, class: "form-control" %>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-md-3 control-label"><%= t "create_buyer.telephone" %></label>
+                      <div class="col-md-6">
+                        <%= ff.text_field :telephone, class: "form-control" %>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <%= f.hidden_field :role_id %>
+
+                </div>
+                <div class="form-actions">
+                  <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                      <button type="submit" class="btn green"><%= t "create_buyer.submit" %></button>
+                      <button type="button" class="btn default"><%= t "create_buyer.cancel" %></button>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

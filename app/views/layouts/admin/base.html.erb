@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="ie8 no-js">
+  <![endif]-->
+  <!--[if IE 9]>
+  <html lang="en" class="ie9 no-js">
+    <![endif]-->
+    <!--[if !IE]><!-->
+    <html lang="en">
+      <!--<![endif]-->
+      <head>
+        <meta charset="utf-8" />
+        <title>Terminal | Admin Dashboard</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="Preview page of Metronic Admin Theme #1 for statistics, charts, recent events and reports"
+          name="description" />
+        <meta content="" name="author" />
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet"
+          type="text/css" />
+        <%= csrf_meta_tags %>
+        <%= stylesheet_link_tag "application-admin", media: "all" %>
+        <link rel="shortcut icon" href="favicon.ico" />
+      </head>
+      <body class="page-header-fixed page-sidebar-closed-hide-logo
+        page-content-white">
+        <div class="page-wrapper">
+          <div class="page-header navbar navbar-fixed-top">
+            <div class="page-header-inner ">
+              <div class="page-logo">
+                <a href="index.html">
+                <img src="/assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+                <div class="menu-toggler sidebar-toggler">
+                  <span></span>
+                </div>
+              </div>
+              <a href="javascript:;" class="menu-toggler responsive-toggler"
+                data-toggle="collapse" data-target=".navbar-collapse">
+              <span></span>
+              </a>
+              <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                  <li class="dropdown dropdown-user">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                      data-close-others="true">
+                    <span class="username username-hide-on-mobile">
+                      <%= current_admin.name %>
+                    </span>
+                    </a>
+                  </li>
+                  <li class="">
+                    <%= link_to '<i class="fa fa-sign-out" aria-hidden="true" style="color: #fff"></i>'.html_safe,
+                      admin_logout_path, class: "dropdown-toggle" %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"> </div>
+          <div class="page-container">
+            <div class="page-sidebar-wrapper">
+              <div class="page-sidebar navbar-collapse collapse">
+                <ul class="page-sidebar-menu  page-header-fixed "
+                  data-keep-expanded="false" data-auto-scroll="true"
+                  data-slide-speed="200" style="padding-top: 20px">
+                  <li class="sidebar-toggler-wrapper hide">
+                    <div class="sidebar-toggler">
+                      <span></span>
+                    </div>
+                  </li>
+                  <li class="nav-item start active open">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-home"></i>
+                    <span class="title">Dashboard</span>
+                    <span class="selected"></span>
+                    <span class="arrow open"></span>
+                    </a>
+                    <ul class="sub-menu">
+                      <li class="nav-item start active open">
+                        <%= link_to new_admin_brand_path, class: "nav-link" do %>
+                          <i class="icon-bar-chart"></i>
+                          <span class="title"><%= t "create_brand.page_title" %></span>
+                          <span class="selected"></span>
+                        <% end %>
+                      </li>
+                      <li class="nav-item start ">
+                        <a href="dashboard_2.html" class="nav-link ">
+                        <i class="icon-bulb"></i>
+                        <span class="title">Dashboard 2</span>
+                        </a>
+                      </li>
+                      <li class="nav-item start ">
+                        <a href="dashboard_3.html" class="nav-link ">
+                        <i class="icon-graph"></i>
+                        <span class="title">Dashboard 3</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                      <i class="icon-user"></i>
+                      <span class="title"><%= t "create_buyer.buyer" %></span>
+                      <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu" style="display: none;">
+                      <li class="nav-item">
+                        <%= link_to new_admin_buyer_path, class: "nav-link" do %>
+                          <i class="icon-notebook"></i>
+                          <span class="title"><%= t "create_buyer.create_buyer" %></span>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="page-content-wrapper">
+              <div class="page-content">
+                <% flash.each do |type, msg| %>
+                  <div class="alert alert-<%= type %> alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <p><%= msg %></p>
+                  </div>
+                <% end %>
+                <%= yield %>
+              </div>
+            </div>
+          </div>
+          <div class="page-footer">
+            <div class="page-footer-inner"> 2017 &copy; Terminal
+              <a target="_blank" href="http://keenthemes.com">Keenthemes</a> &nbsp;|&nbsp;
+            </div>
+            <div class="scroll-to-top">
+              <i class="icon-arrow-up"></i>
+            </div>
+          </div>
+        </div>
+        <!--[if lt IE 9]>
+        <script src="/assets/global/plugins/respond.min.js"></script>
+        <script src="/assets/global/plugins/excanvas.min.js"></script>
+        <script src="/assets/global/plugins/ie8.fix.min.js"></script>
+        <![endif]-->
+        <!-- BEGIN CORE PLUGINS -->
+        <%= javascript_include_tag "application-admin" %>
+      </body>
+    </html>

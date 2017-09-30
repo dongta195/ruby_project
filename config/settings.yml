@@ -1,0 +1,14 @@
+status:
+  draft: 0
+  published: 1
+order:
+  approve_status:
+    waitting: 0
+    approve: 1
+    reject: 2
+user_role:
+  brand: 1
+  buyer: 2
+brand_image_type:
+  company_image: 0
+  product_image: 1
